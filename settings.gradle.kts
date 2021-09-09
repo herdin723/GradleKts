@@ -7,5 +7,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GradleKts"
-include ':app'
-include ':appLib'
+include (":app")
+include (":appLib")
