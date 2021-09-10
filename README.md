@@ -8,8 +8,14 @@ gradle脚本使用Kotlin 编写
 # 更改原则：
 
 - 单引号 → 双引号
+
 - 变量 → 加等号
+
 - 对象 → 加括弧
+
+  ------
+
+  
 
 # 1.更改setting.gradle
 
@@ -145,6 +151,69 @@ dependencies {
     testImplementation ("junit:junit:4.+")
     androidTestImplementation ("androidx.test.ext:junit:1.1.2")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.3.0")
+}
+```
+
+------
+
+# 构建依赖插件
+
+- 1.新建buildSrc项目,配置好build.gradle.kts，归类写好应用配置
+
+```kotlin
+plugins {
+    `kotlin-dsl`
+}
+repositories {
+    google()
+    maven("https://maven.aliyun.com/repository/public")
+}
+```
+
+- 2.在使用的build.gradle.kts中导入buildSrc项目（包名全路径）
+
+  
+
+  ```kotlin
+  import com.herdin.depend.plugin.*
+  plugins {
+      id ("com.android.application")
+      id ("kotlin-android")
+  }
+  ```
+
+- 3.替换常量
+
+```kotlin
+ compileSdk =  BuildConfig.compileSdk
+
+    defaultConfig {
+        applicationId =  "com.herdin.android.gradlekts"
+        minSdk = BuildConfig.minSdk
+        targetSdk = BuildConfig.targetSdk
+        versionCode = BuildConfig.versionCode
+        versionName = BuildConfig.versionName
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+```
+
+```kotlin
+dependencies {
+
+    implementation (AndroidX.ktx)
+    implementation (AndroidX.appcompat)
+    implementation (AndroidX.constraintlayout)
+    implementation (Google.material)
+
+//    implementation (project(mapOf("path" to ":appLib")))
+    implementation (project(Module.app_lib))
+
+
+    testImplementation (AndroidTest.junit)
+    androidTestImplementation (AndroidTest.ext_junit)
+    androidTestImplementation (AndroidTest.espresso_core)
 }
 ```
 

@@ -27,8 +27,13 @@ object JetPack {
 object Google {
     const val material = "com.google.android.material:material:1.4.0"
 }
+
 object AndroidTest{
     const val junit = "junit:junit:4.+"
     const val ext_junit = "androidx.test.ext:junit:1.1.2"
     const val espresso_core = "androidx.test.espresso:espresso-core:3.3.0"
+}
+
+object Module{
+    const val app_lib = ":appLib"
 }

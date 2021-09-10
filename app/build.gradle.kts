@@ -1,6 +1,4 @@
-import com.herdin.depend.plugin.*
-
-
+import com.herdin.depend.plugin.*;
 plugins {
     id ("com.android.application")
     id ("kotlin-android")
@@ -41,8 +39,8 @@ dependencies {
     implementation (AndroidX.constraintlayout)
     implementation (Google.material)
 
-//    implementation (project(mapOf("path" to ":appLib")))
-    implementation (project(":appLib"))
+    implementation (project(mapOf("path" to ":appLib")))
+//    implementation (project(":appLib"))
 
 
     testImplementation (AndroidTest.junit)
