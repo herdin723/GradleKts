@@ -1,17 +1,20 @@
+import com.herdin.depend.plugin.*
+
+
 plugins {
     id ("com.android.application")
     id ("kotlin-android")
 }
 
 android {
-    compileSdk =  30
+    compileSdk =  BuildConfig.compileSdk
 
     defaultConfig {
         applicationId =  "com.herdin.android.gradlekts"
-        minSdk = 21
-        targetSdk = 30
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = BuildConfig.minSdk
+        targetSdk = BuildConfig.targetSdk
+        versionCode = BuildConfig.versionCode
+        versionName = BuildConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,14 +36,16 @@ android {
 
 dependencies {
 
-    implementation ("androidx.core:core-ktx:1.3.2")
-    implementation ("androidx.appcompat:appcompat:1.3.1")
-    implementation ("com.google.android.material:material:1.4.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation (AndroidX.ktx)
+    implementation (AndroidX.appcompat)
+    implementation (AndroidX.constraintlayout)
+    implementation (Google.material)
 
-    implementation (project(mapOf("path" to ":appLib")))
+//    implementation (project(mapOf("path" to ":appLib")))
+    implementation (project(":appLib"))
 
-    testImplementation ("junit:junit:4.+")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.3.0")
+
+    testImplementation (AndroidTest.junit)
+    androidTestImplementation (AndroidTest.ext_junit)
+    androidTestImplementation (AndroidTest.espresso_core)
 }
